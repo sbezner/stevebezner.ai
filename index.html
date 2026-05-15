@@ -722,6 +722,13 @@
       border-radius: 9px;
       padding: 0.85rem 1.1rem;
       white-space: nowrap;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    a.race-item:hover {
+      border-color: rgba(16, 185, 129, 0.45);
+      box-shadow: 0 0 14px rgba(16, 185, 129, 0.12);
     }
     .race-icon { font-size: 1.25rem; }
     .race-name { font-size: 0.875rem; font-weight: 600; }
@@ -1486,30 +1493,30 @@
     <div class="running-card fade-in">
       <div class="running-text">
         <h3>Dedicated endurance runner</h3>
-        <p>Logging substantial weekly mileage tracked via Apple Health. Running ties directly into civic work — run-houston2 is a race discovery tool built for the Houston running community. Footwear of choice: Brooks and Xero for high-performance minimalist training.</p>
+        <p>Logging substantial weekly mileage tracked via Apple Health. Running is woven into everything — including run-houston2, a race discovery tool I built for the Houston running community. Footwear of choice: Brooks and Xero for high-performance minimalist training.</p>
       </div>
       <div class="running-races">
-        <div class="race-item">
-          <span class="race-icon">🏁</span>
+        <a href="https://www.cowtownmarathon.org" target="_blank" rel="noopener" class="race-item">
+          <span class="race-icon">🤠</span>
           <div>
             <div class="race-name">Cowtown Marathon</div>
-            <div class="race-dist">26.2 mi</div>
+            <div class="race-dist">26.2 mi · Fort Worth, TX</div>
           </div>
-        </div>
-        <div class="race-item">
-          <span class="race-icon">🏃</span>
+        </a>
+        <a href="https://www.runhouston.com" target="_blank" rel="noopener" class="race-item">
+          <span class="race-icon">🏙️</span>
           <div>
             <div class="race-name">Run Houston Series</div>
-            <div class="race-dist">Half Marathon</div>
+            <div class="race-dist">Half Marathon · Houston, TX</div>
           </div>
-        </div>
-        <div class="race-item">
-          <span class="race-icon">📍</span>
+        </a>
+        <a href="http://runhouston.app" target="_blank" rel="noopener" class="race-item">
+          <span class="race-icon">🗺️</span>
           <div>
-            <div class="race-name">Houston Area Races</div>
-            <div class="race-dist">run-houston2</div>
+            <div class="race-name">run-houston2</div>
+            <div class="race-dist">Race discovery · runhouston.app</div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>
