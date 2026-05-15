@@ -809,6 +809,113 @@
     .delay-3 { transition-delay: 0.3s; }
     .delay-4 { transition-delay: 0.4s; }
 
+    /* ── THEME TOGGLE ────────────────────────────── */
+    .theme-toggle {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text2);
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .theme-toggle:hover { border-color: var(--cyan); color: var(--cyan); }
+
+    /* Light mode overrides */
+    [data-theme="light"] {
+      --bg:           #f0f4f8;
+      --bg2:          #e2e8f0;
+      --card:         #ffffff;
+      --border:       rgba(0, 0, 0, 0.08);
+      --border-hover: rgba(2, 132, 199, 0.4);
+      --cyan:         #0284c7;
+      --purple:       #7c3aed;
+      --green:        #059669;
+      --orange:       #d97706;
+      --text:         #0f172a;
+      --text2:        #475569;
+      --text3:        #94a3b8;
+      --glow:         rgba(2, 132, 199, 0.08);
+    }
+    [data-theme="light"] body::before {
+      background-image: radial-gradient(circle, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
+    }
+    [data-theme="light"] nav {
+      background: rgba(240, 244, 248, 0.92);
+    }
+    [data-theme="light"] #hero::after {
+      background: radial-gradient(ellipse at center, rgba(2, 132, 199, 0.04) 0%, transparent 68%);
+    }
+
+    /* ── SPEAKING ────────────────────────────────── */
+    .speaking-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .speaking-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem;
+      transition: all 0.2s;
+    }
+    .speaking-card:hover {
+      border-color: var(--border-hover);
+      box-shadow: 0 0 20px var(--glow);
+    }
+    .speaking-type {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 0.6rem;
+    }
+    .speaking-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+      line-height: 1.4;
+    }
+    .speaking-event {
+      font-size: 0.8125rem;
+      color: var(--text2);
+      margin-bottom: 0.25rem;
+    }
+    .speaking-year {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text3);
+    }
+
+    /* ── AGGIE CALLOUT ───────────────────────────── */
+    .aggie-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(80, 0, 0, 0.12);
+      border: 1px solid rgba(80, 0, 0, 0.25);
+      border-radius: 10px;
+      padding: 0.75rem 1.1rem;
+      margin-top: 1.5rem;
+    }
+    .aggie-badge .aggie-text strong {
+      display: block;
+      font-size: 0.875rem;
+      color: var(--text);
+    }
+    .aggie-badge .aggie-text span {
+      font-size: 0.775rem;
+      color: var(--text3);
+    }
+
     /* ── RESPONSIVE ──────────────────────────────── */
     @media (max-width: 768px) {
       .nav-links { display: none; }
@@ -817,6 +924,7 @@
       .project-card.featured { grid-column: span 1; }
       .project-group-label::after { display: none; }
       .running-card { grid-template-columns: 1fr; gap: 2rem; }
+      .speaking-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -834,6 +942,7 @@
     <li><a href="#running">Running</a></li>
     <li><a href="https://www.linkedin.com/in/bezner" target="_blank" rel="noopener" style="color:var(--cyan);">LinkedIn</a></li>
   </ul>
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode">☀️</button>
 </nav>
 
 <!-- HERO -->
@@ -874,6 +983,13 @@
         <p>I'm <strong>Steve Bezner</strong> — most call me <strong>Bez</strong>. I'm a senior technology leader and civic-tech builder based in northwest Houston.</p>
         <p>I work where enterprise software, AI automation, and community tools converge — believing the most interesting problems sit exactly at that intersection.</p>
         <p>My philosophy: <strong>static-first, lightweight, API-driven, civic-minded.</strong> Build tools that work, ship openly, measure what matters.</p>
+        <div class="aggie-badge">
+          <span style="font-size:1.5rem;">🤘</span>
+          <div class="aggie-text">
+            <strong>Texas A&amp;M University</strong>
+            <span>BBA, Accounting · Class of 1994 · Gig 'Em</span>
+          </div>
+        </div>
       </div>
       <div class="stats-grid">
         <div class="stat-card fade-in delay-1">
@@ -1061,6 +1177,39 @@
           <div class="timeline-desc">Where every great tech career begins.</div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKING -->
+<section id="speaking">
+  <div class="container">
+    <div class="section-label">// speaking &amp; media</div>
+    <h2 class="section-title fade-in">Speaking &amp; Industry</h2>
+    <p class="section-subtitle fade-in">30 years of CRE software experience — sharing what's next for the industry.</p>
+    <div class="speaking-grid">
+
+      <div class="speaking-card fade-in">
+        <div class="speaking-type">Conference</div>
+        <div class="speaking-title">AI-First Culture in Enterprise Software Organizations</div>
+        <div class="speaking-event">Altus Group Leadership Summit</div>
+        <div class="speaking-year">2025</div>
+      </div>
+
+      <div class="speaking-card fade-in delay-1">
+        <div class="speaking-type">Panel</div>
+        <div class="speaking-title">The Future of CRE Technology Platforms</div>
+        <div class="speaking-event">CREtech Conference</div>
+        <div class="speaking-year">2024</div>
+      </div>
+
+      <div class="speaking-card fade-in delay-2">
+        <div class="speaking-type">Keynote</div>
+        <div class="speaking-title">From Point Solutions to Platform: The ARGUS Journey</div>
+        <div class="speaking-event">ARGUS User Conference</div>
+        <div class="speaking-year">2023</div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1427,6 +1576,26 @@
 </footer>
 
 <script>
+  // Theme toggle
+  const themeToggle = document.getElementById('theme-toggle');
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+    themeToggle.textContent = '🌙';
+  }
+  themeToggle.addEventListener('click', () => {
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    if (isLight) {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('theme', 'dark');
+      themeToggle.textContent = '☀️';
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', 'light');
+      themeToggle.textContent = '🌙';
+    }
+  });
+
   // Typewriter
   const roles = [
     'EVP @ Altus Group',
