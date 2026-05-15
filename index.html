@@ -378,15 +378,37 @@
     /* ── PROJECTS ────────────────────────────────── */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .project-group {
+      margin-bottom: 2.5rem;
+    }
+
+    .project-group-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.69rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .project-group-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
     }
 
     .project-card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 2rem;
+      padding: 1.75rem;
       text-decoration: none;
       color: inherit;
       display: block;
@@ -408,7 +430,7 @@
       box-shadow: 0 10px 36px rgba(0, 229, 255, 0.1);
     }
     .project-card:hover::before { opacity: 1; }
-    .project-card.featured { grid-column: span 2; }
+    .project-card.featured { grid-column: 1 / -1; }
 
     .project-header {
       display: flex;
@@ -417,10 +439,10 @@
       margin-bottom: 1rem;
     }
     .project-icon {
-      width: 46px; height: 46px;
+      width: 42px; height: 42px;
       border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       flex-shrink: 0;
     }
     .project-status {
@@ -438,14 +460,14 @@
       animation: pulse 2s infinite;
     }
 
-    .project-name { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .project-desc { color: var(--text2); font-size: 0.9rem; line-height: 1.65; margin-bottom: 1.25rem; }
+    .project-name { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .project-desc { color: var(--text2); font-size: 0.875rem; line-height: 1.65; margin-bottom: 1.1rem; }
 
-    .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
     .tag {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.69rem;
-      padding: 0.25rem 0.65rem;
+      font-size: 0.67rem;
+      padding: 0.22rem 0.6rem;
       border-radius: 4px;
       background: rgba(255, 255, 255, 0.045);
       color: var(--text3);
@@ -624,6 +646,7 @@
       .about-grid, .work-items, .ai-grid { grid-template-columns: 1fr; gap: 1.5rem; }
       .projects-grid { grid-template-columns: 1fr; }
       .project-card.featured { grid-column: span 1; }
+      .project-group-label::after { display: none; }
       .running-card { grid-template-columns: 1fr; gap: 2rem; }
     }
   </style>
@@ -754,80 +777,204 @@
 <section id="projects">
   <div class="container">
     <div class="section-label">// projects</div>
-    <h2 class="section-title fade-in">Side Projects &amp; Ventures</h2>
-    <p class="section-subtitle fade-in">Civic tech, running, e-commerce, and community tools — built lightweight and shipped openly.</p>
-    <div class="projects-grid">
+    <h2 class="section-title fade-in">Projects &amp; Ventures</h2>
+    <p class="section-subtitle fade-in">Every public site — civic tools, running resources, industry references, food &amp; health, AI, and commerce.</p>
 
-      <a href="https://harristaxappeals.org" target="_blank" rel="noopener" class="project-card featured fade-in">
-        <div class="project-header">
-          <div class="project-icon" style="background:rgba(0,229,255,0.08);">🏠</div>
-          <div class="project-status" style="color:var(--green);">
-            <span class="status-dot" style="background:var(--green);"></span> Live
+    <!-- Civic Tech -->
+    <div class="project-group fade-in">
+      <div class="project-group-label">🏛️ Civic Tech</div>
+      <div class="projects-grid">
+
+        <a href="https://harristaxappeals.org" target="_blank" rel="noopener" class="project-card featured">
+          <div class="project-header">
+            <div class="project-icon" style="background:rgba(0,229,255,0.08);">🏠</div>
+            <div class="project-status" style="color:var(--green);">
+              <span class="status-dot" style="background:var(--green);"></span> Live · harristaxappeals.org
+            </div>
           </div>
-        </div>
-        <div class="project-name">HarrisTaxAppeals</div>
-        <div class="project-desc">County-scale property tax protest tool for Harris County homeowners. Equity-based protest arguments built from HCAD public data — covering 1.1M+ residential parcels. Scaled up from a Jersey Village prototype of ~2,172 parcels.</div>
-        <div class="project-tags">
-          <span class="tag">Cloudflare Pages</span>
-          <span class="tag">DuckDB</span>
-          <span class="tag">PMTiles</span>
-          <span class="tag">MapLibre GL JS</span>
-          <span class="tag">R2 + Workers</span>
-          <span class="tag">Civic Tech</span>
-        </div>
-      </a>
-
-      <a href="https://github.com/sbezner/run-houston2" target="_blank" rel="noopener" class="project-card fade-in delay-1">
-        <div class="project-header">
-          <div class="project-icon" style="background:rgba(16,185,129,0.08);">🏃</div>
-          <div class="project-status" style="color:var(--cyan);">
-            <span class="status-dot" style="background:var(--cyan);"></span> Active
+          <div class="project-name">HarrisTaxAppeals</div>
+          <div class="project-desc">County-scale property tax protest tool for all Harris County homeowners. Equity-based arguments from HCAD public data — 1.1M+ residential parcels. Scaled from a Jersey Village prototype of ~2,172 parcels.</div>
+          <div class="project-tags">
+            <span class="tag">Cloudflare Pages</span>
+            <span class="tag">DuckDB</span>
+            <span class="tag">PMTiles</span>
+            <span class="tag">MapLibre GL JS</span>
+            <span class="tag">R2 + Workers</span>
+            <span class="tag">Sharded JSON</span>
           </div>
-        </div>
-        <div class="project-name">run-houston2</div>
-        <div class="project-desc">Static race discovery site for Houston-area runners. Quarterly Claude-assisted research produces verified race datasets through early 2027.</div>
-        <div class="project-tags">
-          <span class="tag">Vanilla JS</span>
-          <span class="tag">GitHub Pages</span>
-          <span class="tag">Flat JSON</span>
-          <span class="tag">Claude Code</span>
-        </div>
-      </a>
+        </a>
 
-      <a href="https://github.com/sbezner/JerseyVillage2026" target="_blank" rel="noopener" class="project-card fade-in delay-2">
-        <div class="project-header">
-          <div class="project-icon" style="background:rgba(139,92,246,0.08);">🗳️</div>
-          <div class="project-status" style="color:var(--purple);">
-            <span class="status-dot" style="background:var(--purple);"></span> Shipped
+        <a href="http://jvtaxappeal.com" target="_blank" rel="noopener" class="project-card">
+          <div class="project-header">
+            <div class="project-icon" style="background:rgba(0,229,255,0.08);">📋</div>
+            <div class="project-status" style="color:var(--cyan);">
+              <span class="status-dot" style="background:var(--cyan);"></span> Live · jvtaxappeal.com
+            </div>
           </div>
-        </div>
-        <div class="project-name">JerseyVillage2026</div>
-        <div class="project-desc">Voter guide microsite for the May 2026 Jersey Village municipal election — with daily AI-powered candidate social media summaries via GitHub Actions cron.</div>
-        <div class="project-tags">
-          <span class="tag">Anthropic API</span>
-          <span class="tag">GitHub Actions</span>
-          <span class="tag">Cloudflare DNS</span>
-          <span class="tag">Vanilla JS</span>
-        </div>
-      </a>
-
-      <a href="https://energizedengines.com" target="_blank" rel="noopener" class="project-card fade-in delay-3">
-        <div class="project-header">
-          <div class="project-icon" style="background:rgba(245,158,11,0.08);">⚙️</div>
-          <div class="project-status" style="color:var(--orange);">
-            <span class="status-dot" style="background:var(--orange);"></span> Commerce
+          <div class="project-name">JVAppeals2026</div>
+          <div class="project-desc">The original Jersey Village HCAD protest prototype (~2,172 parcels) — the proof of concept that scaled into HarrisTaxAppeals.</div>
+          <div class="project-tags">
+            <span class="tag">MapLibre GL JS</span>
+            <span class="tag">Flat JSON</span>
+            <span class="tag">GitHub Pages</span>
           </div>
-        </div>
-        <div class="project-name">Energized Engines</div>
-        <div class="project-desc">Shopify e-commerce business selling industrial Sumner lift equipment parts. Customer base seeds product ideas for industrial IoT and adjacent hardware concepts.</div>
-        <div class="project-tags">
-          <span class="tag">Shopify</span>
-          <span class="tag">E-Commerce</span>
-          <span class="tag">Industrial IoT</span>
-        </div>
-      </a>
+        </a>
 
+        <a href="https://sbezner.github.io/JerseyVillage2026/" target="_blank" rel="noopener" class="project-card">
+          <div class="project-header">
+            <div class="project-icon" style="background:rgba(139,92,246,0.08);">🗳️</div>
+            <div class="project-status" style="color:var(--purple);">
+              <span class="status-dot" style="background:var(--purple);"></span> Shipped
+            </div>
+          </div>
+          <div class="project-name">JerseyVillage2026</div>
+          <div class="project-desc">Voter guide for the May 2026 Jersey Village municipal election. Daily AI-powered candidate social media summaries via GitHub Actions cron and the Anthropic API.</div>
+          <div class="project-tags">
+            <span class="tag">Anthropic API</span>
+            <span class="tag">GitHub Actions</span>
+            <span class="tag">Cloudflare DNS</span>
+            <span class="tag">Vanilla JS</span>
+          </div>
+        </a>
+
+      </div>
     </div>
+
+    <!-- Running -->
+    <div class="project-group fade-in delay-1">
+      <div class="project-group-label">🏃 Running</div>
+      <div class="projects-grid">
+
+        <a href="http://runhouston.app" target="_blank" rel="noopener" class="project-card">
+          <div class="project-header">
+            <div class="project-icon" style="background:rgba(16,185,129,0.08);">🏃</div>
+            <div class="project-status" style="color:var(--green);">
+              <span class="status-dot" style="background:var(--green);"></span> Live · runhouston.app
+            </div>
+          </div>
+          <div class="project-name">run-houston2</div>
+          <div class="project-desc">Static race discovery site for Houston-area runners. Quarterly Claude-assisted research produces verified race datasets covering April 2026 through early 2027.</div>
+          <div class="project-tags">
+            <span class="tag">Vanilla JS</span>
+            <span class="tag">Flat JSON</span>
+            <span class="tag">GitHub Pages</span>
+            <span class="tag">Claude Code</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Industry & Real Estate -->
+    <div class="project-group fade-in delay-2">
+      <div class="project-group-label">🏢 Industry &amp; Real Estate</div>
+      <div class="projects-grid">
+
+        <a href="https://sbezner.github.io/CREFuture/" target="_blank" rel="noopener" class="project-card">
+          <div class="project-header">
+            <div class="project-icon" style="background:rgba(139,92,246,0.08);">🏢</div>
+            <div class="project-status" style="color:var(--purple);">
+              <span class="status-dot" style="background:var(--purple);"></span> Live
+            </div>
+          </div>
+          <div class="project-name">CREFuture</div>
+          <div class="project-desc">Visionary platform exploring the transformative collision of AI and Commercial Real Estate. Built with Astro.</div>
+          <div class="project-tags">
+            <span class="tag">Astro</span>
+            <span class="tag">GitHub Pages</span>
+          </div>
+        </a>
+
+        <a href="https://sbezner.github.io/Sumner/" target="_blank" rel="noopener" class="project-card">
+          <div class="project-header">
+            <div class="project-icon" style="background:rgba(245,158,11,0.08);">🔧</div>
+            <div class="project-status" style="color:var(--orange);">
+              <span class="status-dot" style="background:var(--orange);"></span> Live
+            </div>
+          </div>
+          <div class="project-name">Sumner Lift Field Manual</div>
+          <div class="project-desc">Service reference for Sumner lift repair personnel — calculators, glossary, and technical history for field technicians.</div>
+          <div class="project-tags">
+            <span class="tag">Vanilla HTML</span>
+            <span class="tag">GitHub Pages</span>
+            <span class="tag">Industrial</span>
+          </div>
+        </a>
+
+        <a href="https://sbezner.github.io/TDC/" target="_blank" rel="noopener" class="project-card">
+          <div class="project-header">
+            <div class="project-icon" style="background:rgba(100,116,139,0.08);">📚</div>
+            <div class="project-status" style="color:var(--text3);">
+              <span class="status-dot" style="background:var(--text3);"></span> Live
+            </div>
+          </div>
+          <div class="project-name">TDC Tribute</div>
+          <div class="project-desc">The Texas Department of Corrections — a tribute and historical reference covering history and notable figures.</div>
+          <div class="project-tags">
+            <span class="tag">Vanilla HTML</span>
+            <span class="tag">GitHub Pages</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Health / Commerce / AI -->
+    <div class="project-group fade-in delay-3">
+      <div class="project-group-label">🌱 Health, Commerce &amp; AI</div>
+      <div class="projects-grid">
+
+        <a href="https://theplantlab.cc" target="_blank" rel="noopener" class="project-card">
+          <div class="project-header">
+            <div class="project-icon" style="background:rgba(16,185,129,0.08);">🌱</div>
+            <div class="project-status" style="color:var(--green);">
+              <span class="status-dot" style="background:var(--green);"></span> Live · theplantlab.cc
+            </div>
+          </div>
+          <div class="project-name">The Plant Lab</div>
+          <div class="project-desc">Vegan food science resource — recipes, nutrition research, and science-backed content for a plant-forward lifestyle.</div>
+          <div class="project-tags">
+            <span class="tag">GitHub Pages</span>
+            <span class="tag">Custom Domain</span>
+            <span class="tag">Food Science</span>
+          </div>
+        </a>
+
+        <a href="https://energizedengines.com" target="_blank" rel="noopener" class="project-card">
+          <div class="project-header">
+            <div class="project-icon" style="background:rgba(245,158,11,0.08);">⚙️</div>
+            <div class="project-status" style="color:var(--orange);">
+              <span class="status-dot" style="background:var(--orange);"></span> Commerce
+            </div>
+          </div>
+          <div class="project-name">Energized Engines</div>
+          <div class="project-desc">Shopify e-commerce business selling industrial Sumner lift equipment parts. Customer base seeds ideas for industrial IoT and hardware products.</div>
+          <div class="project-tags">
+            <span class="tag">Shopify</span>
+            <span class="tag">E-Commerce</span>
+            <span class="tag">Industrial IoT</span>
+          </div>
+        </a>
+
+        <a href="https://sbezner.github.io/Fred/" target="_blank" rel="noopener" class="project-card">
+          <div class="project-header">
+            <div class="project-icon" style="background:rgba(139,92,246,0.08);">🤖</div>
+            <div class="project-status" style="color:var(--purple);">
+              <span class="status-dot" style="background:var(--purple);"></span> Live
+            </div>
+          </div>
+          <div class="project-name">Fred's Daily Briefing</div>
+          <div class="project-desc">Web front-end for Fred, my AI Chief of Staff. Daily AI-generated briefings surfaced via a lightweight static page.</div>
+          <div class="project-tags">
+            <span class="tag">OpenClaw</span>
+            <span class="tag">GitHub Pages</span>
+            <span class="tag">Gemini 2.5</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
   </div>
 </section>
 
