@@ -6,6 +6,7 @@
 * **Entrepreneurship:** Owner and operator of **Energized Engines**, an e-commerce business specializing in material lift parts and repairs via Shopify.
 * **Technical Interests:** High-level involvement with autonomous AI agent frameworks, specifically **OpenClaw** and Model Context Protocol (MCP). Proficient in hosting local LLMs (Mac Mini M4 setup) and NVIDIA Inference Microservices (NIMs).
 * **Community Projects:** Founder of **HarrisTaxAppeals.com**, a resource helping local residents with property tax appeals.
+* **Personal Domain:** Registering **sbezner.ai** via Cloudflare as primary personal domain (chosen over stevebezner.ai; consistent with GitHub handle).
 
 ## Personal & Physical Attributes
 * **Full Name:** Steven Harris Bezner (Steve).

@@ -4,6 +4,8 @@
 
 I'm Steve Bezner, though most people call me **Bez**. I'm based in Jersey Village, TX (Houston area) and work at the intersection of enterprise software leadership, civic tech, and entrepreneurship.
 
+**Personal domain:** [sbezner.ai](https://sbezner.ai) — registering via Cloudflare (chosen over stevebezner.ai for being shorter and consistent with GitHub handle `sbezner`).
+
 ---
 
 ## Professional Life
