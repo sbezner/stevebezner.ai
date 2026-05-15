@@ -523,6 +523,126 @@
       border: 1px solid var(--border);
     }
 
+    /* ── PHILOSOPHY ─────────────────────────────── */
+    .philosophy-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .philosophy-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--purple), var(--cyan));
+    }
+    .philosophy-quote {
+      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.4;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+    .philosophy-quote em {
+      color: var(--cyan);
+      font-style: normal;
+    }
+    .philosophy-pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .pillar {
+      padding: 1rem;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    .pillar-title {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+    .pillar-desc {
+      font-size: 0.78rem;
+      color: var(--text2);
+      line-height: 1.5;
+    }
+    @media (max-width: 768px) {
+      .philosophy-pillars { grid-template-columns: 1fr; }
+    }
+
+    /* ── TIMELINE ────────────────────────────────── */
+    .timeline {
+      position: relative;
+      padding-left: 2.5rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 6px;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--cyan), var(--purple), transparent);
+    }
+    .timeline-item {
+      position: relative;
+      padding-bottom: 2rem;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.2rem;
+      top: 5px;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--cyan);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 8px rgba(0,229,255,0.4);
+    }
+    .timeline-item.muted::before { background: var(--text3); box-shadow: none; }
+    .timeline-year {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--cyan);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+    .timeline-item.muted .timeline-year { color: var(--text3); }
+    .timeline-role {
+      font-weight: 700;
+      font-size: 0.9375rem;
+      color: var(--text);
+      margin-bottom: 0.15rem;
+    }
+    .timeline-company {
+      font-size: 0.8125rem;
+      color: var(--text2);
+    }
+    .timeline-desc {
+      font-size: 0.8rem;
+      color: var(--text3);
+      margin-top: 0.3rem;
+      line-height: 1.5;
+    }
+    .timeline-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 4rem;
+    }
+    @media (max-width: 768px) {
+      .timeline-cols { grid-template-columns: 1fr; }
+    }
+
     /* ── AI STACK ────────────────────────────────── */
     .ai-grid {
       display: grid;
@@ -707,9 +827,10 @@
   <a href="#" class="nav-logo">bez<span>.</span></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
+    <li><a href="#philosophy">Philosophy</a></li>
     <li><a href="#work">Work</a></li>
+    <li><a href="#timeline">Career</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#ai">AI Stack</a></li>
     <li><a href="#running">Running</a></li>
     <li><a href="https://www.linkedin.com/in/bezner" target="_blank" rel="noopener" style="color:var(--cyan);">LinkedIn</a></li>
   </ul>
@@ -768,8 +889,38 @@
           <div class="stat-label">Marathon Miles</div>
         </div>
         <div class="stat-card fade-in delay-4">
-          <div class="stat-value">AI↑</div>
-          <div class="stat-label">First Approach</div>
+          <div class="stat-value">30+</div>
+          <div class="stat-label">Years in CRE Tech</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <div class="container">
+    <div class="section-label">// philosophy</div>
+    <h2 class="section-title fade-in">How I think</h2>
+    <div class="philosophy-card fade-in">
+      <div class="philosophy-quote">
+        "<em>What got us here today won't get us there tomorrow.</em>"
+      </div>
+      <p style="color:var(--text2);font-size:1rem;line-height:1.8;max-width:720px;">
+        I believe the most durable organizations are built on trust, not process. Small autonomous teams — empowered, accountable, passionate — outperform bureaucratic ones every time. I'm always in requirement mode: building pipelines of great talent, exploring new technology, and creating space for people to do their best work.
+      </p>
+      <div class="philosophy-pillars">
+        <div class="pillar">
+          <div class="pillar-title">Trust over process</div>
+          <div class="pillar-desc">Give teams the space and authority to accomplish great things without overbearing oversight.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-title">Always in requirement mode</div>
+          <div class="pillar-desc">Continuously building a pipeline of great talent and diverse perspectives — even when you're not hiring.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-title">Static-first, civic-minded</div>
+          <div class="pillar-desc">Build tools that work, ship openly, keep it lightweight. The best civic tech is invisible infrastructure.</div>
         </div>
       </div>
     </div>
@@ -781,12 +932,12 @@
   <div class="container">
     <div class="section-label">// work</div>
     <h2 class="section-title fade-in">Day Job</h2>
-    <p class="section-subtitle fade-in">Leading technology, services, and client experience at scale in commercial real estate software.</p>
-    <div class="work-card fade-in">
+    <p class="section-subtitle fade-in">30+ years in commercial real estate software — from ARGUS software tester in 1995 to EVP today.</p>
+    <div class="work-card fade-in" style="margin-bottom:1.25rem;">
       <div class="work-header">
         <div>
           <div class="work-company">Altus Group</div>
-          <div class="work-role">Executive Vice President · Services &amp; CEG</div>
+          <div class="work-role">EVP, Customer Enablement &amp; Services · Feb 2026–Present</div>
         </div>
         <span class="work-badge">● Current</span>
       </div>
@@ -818,6 +969,96 @@
             <strong>Operations</strong>
             Support, Training, Consulting &amp; Resource Planning
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- City Council -->
+    <div class="work-card fade-in delay-1">
+      <div class="work-header">
+        <div>
+          <div class="work-company">City of Meadows Place</div>
+          <div class="work-role">City Council — Alderman II · 2014–2020</div>
+        </div>
+        <span class="work-badge" style="background:rgba(139,92,246,0.1);border-color:rgba(139,92,246,0.25);color:var(--purple);">● Elected</span>
+      </div>
+      <div class="work-items">
+        <div class="work-item" style="grid-column:span 2;">
+          <div class="work-item-icon" style="background:rgba(139,92,246,0.08);">🏛️</div>
+          <div class="work-item-text">
+            <strong>Elected city council member</strong>
+            Served six years representing Meadows Place, TX — a community of ~5,000 in the Greater Houston area. This hands-on experience in local government directly shaped the civic tech projects that followed: JVAppeals2026, HarrisTaxAppeals, and JerseyVillage2026 all grew from understanding exactly what residents need from their local institutions.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="container">
+    <div class="section-label">// career</div>
+    <h2 class="section-title fade-in">30 Years in CRE Tech</h2>
+    <p class="section-subtitle fade-in">From software tester to EVP — the full arc.</p>
+    <div class="timeline-cols fade-in">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">2026 — Present</div>
+          <div class="timeline-role">EVP, Customer Enablement &amp; Services</div>
+          <div class="timeline-company">Altus Group</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2020 — 2026</div>
+          <div class="timeline-role">Chief Software Development Officer</div>
+          <div class="timeline-company">Altus Group · Houston, TX</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2016 — 2020</div>
+          <div class="timeline-role">EVP, R&amp;D / Product</div>
+          <div class="timeline-company">Altus Analytics, an Altus Group Company</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2014 — 2020</div>
+          <div class="timeline-role">City Council — Alderman II</div>
+          <div class="timeline-company">City of Meadows Place, TX</div>
+          <div class="timeline-desc">Elected. Six years in local government that seeded every civic tech project.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2010 — 2016</div>
+          <div class="timeline-role">Vice President, Development &amp; Service Delivery</div>
+          <div class="timeline-company">Altus Group</div>
+          <div class="timeline-desc">Led a 100-person development and service delivery organization.</div>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">2003 — 2010</div>
+          <div class="timeline-role">Co-Founder &amp; Director, Application Development</div>
+          <div class="timeline-company">Financial Softworks</div>
+          <div class="timeline-desc">Co-founded commercial financial software company serving CRE executives.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2000 — 2003</div>
+          <div class="timeline-role">Director</div>
+          <div class="timeline-company">Realm Business Solutions (formerly ARGUS)</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">1995 — 2000</div>
+          <div class="timeline-role">Programmer &amp; Software Tester</div>
+          <div class="timeline-company">ARGUS Financial Software</div>
+          <div class="timeline-desc">Where it all started. Lead tester, then programmer on the core CRE platform.</div>
+        </div>
+        <div class="timeline-item muted">
+          <div class="timeline-year">1994</div>
+          <div class="timeline-role">BBA, Accounting</div>
+          <div class="timeline-company">Texas A&amp;M University</div>
+        </div>
+        <div class="timeline-item muted">
+          <div class="timeline-year">1990 — 1994</div>
+          <div class="timeline-role">Shift Supervisor</div>
+          <div class="timeline-company">Kinko's</div>
+          <div class="timeline-desc">Where every great tech career begins.</div>
         </div>
       </div>
     </div>
