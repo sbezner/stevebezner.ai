@@ -3,25 +3,1003 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>stevebezner.ai</title>
+  <title>Steve Bezner · Bez</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      background: #0f0f0f;
-      color: #f0f0f0;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #06060f;
+      --bg2:          #0b0b1c;
+      --card:         #0f0f26;
+      --border:       rgba(100, 100, 200, 0.15);
+      --border-hover: rgba(0, 229, 255, 0.3);
+      --cyan:         #00e5ff;
+      --purple:       #8b5cf6;
+      --green:        #10b981;
+      --orange:       #f59e0b;
+      --text:         #f1f5f9;
+      --text2:        #94a3b8;
+      --text3:        #475569;
+      --glow:         rgba(0, 229, 255, 0.15);
     }
-    h1 {
-      font-size: 3rem;
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(99, 102, 241, 0.18) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ─────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(6, 6, 15, 0.82);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--cyan);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--text3); }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--text2);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--cyan); }
+
+    /* ── HERO ────────────────────────────────────── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 5rem;
+      overflow: hidden;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70vw; height: 70vh;
+      background: radial-gradient(ellipse at center, rgba(0, 229, 255, 0.055) 0%, transparent 68%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0, 229, 255, 0.07);
+      border: 1px solid rgba(0, 229, 255, 0.22);
+      color: var(--cyan);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      padding: 0.4rem 1.1rem;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.35; transform: scale(0.75); }
+    }
+
+    .hero-name {
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(140deg, #ffffff 0%, #94a3b8 55%, var(--cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-role {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(1rem, 2.2vw, 1.3rem);
+      color: var(--text2);
+      margin-bottom: 2rem;
+      min-height: 2rem;
+    }
+    .hero-role .typed { color: var(--cyan); }
+    .hero-role .cursor {
+      display: inline-block;
+      width: 2px; height: 1.15em;
+      background: var(--cyan);
+      margin-left: 2px;
+      vertical-align: middle;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    .hero-location {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: var(--text3);
+      font-size: 0.875rem;
+      margin-bottom: 3rem;
+    }
+
+    .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--cyan);
+      color: #000;
+    }
+    .btn-primary:hover {
+      background: #fff;
+      box-shadow: 0 0 28px rgba(0, 229, 255, 0.55);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2.5rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text3);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      animation: float 2.4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(-8px); }
+    }
+
+    /* ── SECTIONS ────────────────────────────────── */
+    section { position: relative; z-index: 1; padding: 6rem 2rem; }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--border), transparent);
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      color: var(--text2);
+      font-size: 1.0625rem;
+      max-width: 580px;
+      margin-bottom: 3rem;
+      line-height: 1.7;
+    }
+
+    /* ── ABOUT ───────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-text p { color: var(--text2); margin-bottom: 1.25rem; font-size: 1.0625rem; line-height: 1.8; }
+    .about-text p strong { color: var(--text); }
+
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .stat-card:hover {
+      border-color: var(--border-hover);
+      box-shadow: 0 0 20px var(--glow);
+    }
+    .stat-value {
+      font-size: 2.25rem;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--cyan);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+
+    /* ── WORK ────────────────────────────────────── */
+    .work-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .work-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cyan), var(--purple));
+    }
+
+    .work-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .work-company { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.02em; }
+    .work-role { color: var(--cyan); font-size: 1rem; margin-top: 0.3rem; }
+    .work-badge {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      color: var(--green);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.35rem 0.85rem;
+      border-radius: 100px;
       letter-spacing: 0.05em;
+    }
+
+    .work-items {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .work-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 1rem 1.1rem;
+      background: rgba(255, 255, 255, 0.025);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .work-item-icon {
+      width: 34px; height: 34px;
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+    .work-item-text { font-size: 0.875rem; color: var(--text2); line-height: 1.5; }
+    .work-item-text strong {
+      color: var(--text);
+      display: block;
+      margin-bottom: 0.2rem;
+      font-size: 0.8125rem;
+    }
+
+    /* ── PROJECTS ────────────────────────────────── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 0% 0%, var(--glow) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .project-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 36px rgba(0, 229, 255, 0.1);
+    }
+    .project-card:hover::before { opacity: 1; }
+    .project-card.featured { grid-column: span 2; }
+
+    .project-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    .project-icon {
+      width: 46px; height: 46px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .project-status {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      font-size: 0.7rem;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .status-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    .project-name { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .project-desc { color: var(--text2); font-size: 0.9rem; line-height: 1.65; margin-bottom: 1.25rem; }
+
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.69rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.045);
+      color: var(--text3);
+      border: 1px solid var(--border);
+    }
+
+    /* ── AI STACK ────────────────────────────────── */
+    .ai-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .ai-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem;
+      transition: all 0.25s;
+    }
+    .ai-card:hover {
+      border-color: rgba(139, 92, 246, 0.4);
+      box-shadow: 0 0 24px rgba(139, 92, 246, 0.1);
+    }
+    .ai-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      margin-bottom: 1rem;
+    }
+    .ai-icon {
+      width: 42px; height: 42px;
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem;
+    }
+    .ai-name { font-weight: 700; font-size: 1rem; }
+    .ai-type {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.69rem;
+      color: var(--text3);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 0.1rem;
+    }
+    .ai-desc { font-size: 0.875rem; color: var(--text2); line-height: 1.65; }
+
+    /* ── RUNNING ─────────────────────────────────── */
+    .running-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .running-card::before {
+      content: '';
+      position: absolute;
+      bottom: -40px; right: -40px;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .running-text h3 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .running-text p { color: var(--text2); font-size: 1rem; line-height: 1.75; max-width: 500px; }
+
+    .running-races { display: flex; flex-direction: column; gap: 0.75rem; }
+    .race-item {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.16);
+      border-radius: 9px;
+      padding: 0.85rem 1.1rem;
+      white-space: nowrap;
+    }
+    .race-icon { font-size: 1.25rem; }
+    .race-name { font-size: 0.875rem; font-weight: 600; }
+    .race-dist {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--green);
+    }
+
+    /* ── TECH STACK ──────────────────────────────── */
+    .tech-section { background: linear-gradient(to bottom, transparent, var(--bg2) 30%, transparent); }
+
+    .tech-categories { display: flex; flex-direction: column; gap: 2rem; }
+    .tech-category h4 {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text3);
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 0.75rem;
+    }
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 0.625rem; }
+    .tech-tag {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.875rem;
+      color: var(--text);
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .tech-tag:hover {
+      border-color: var(--border-hover);
+      color: var(--cyan);
+      box-shadow: 0 0 14px var(--glow);
+    }
+    .tech-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ── FOOTER ──────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--cyan);
+      text-decoration: none;
+    }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a {
+      color: var(--text3);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--cyan); }
+    .footer-copy { color: var(--text3); font-size: 0.8125rem; }
+
+    /* ── FADE-IN ─────────────────────────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+
+    /* ── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .about-grid, .work-items, .ai-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card.featured { grid-column: span 1; }
+      .running-card { grid-template-columns: 1fr; gap: 2rem; }
     }
   </style>
 </head>
 <body>
-  <h1>Hello World</h1>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">bez<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#ai">AI Stack</a></li>
+    <li><a href="#running">Running</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div style="position:relative; z-index:1;">
+    <div class="hero-badge">Jersey Village, TX · Houston</div>
+    <h1 class="hero-name">Steve Bezner</h1>
+    <div class="hero-role">
+      <span class="typed" id="typed-text"></span><span class="cursor"></span>
+    </div>
+    <div class="hero-location">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2.5">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+      </svg>
+      Static-first · Lightweight · API-driven · Civic-minded
+    </div>
+    <div class="hero-cta">
+      <a href="https://github.com/sbezner" target="_blank" class="btn btn-primary">GitHub</a>
+      <a href="#projects" class="btn btn-secondary">View Projects ↓</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 5v14M5 12l7 7 7-7"/>
+    </svg>
+    scroll
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">// about</div>
+    <div class="about-grid">
+      <div class="about-text fade-in">
+        <h2 class="section-title">Builder at the<br>intersection of<br>tech & community</h2>
+        <p>I'm <strong>Steve Bezner</strong> — most call me <strong>Bez</strong>. I'm a senior technology leader and civic-tech builder based in northwest Houston.</p>
+        <p>I work where enterprise software, AI automation, and community tools converge — believing the most interesting problems sit exactly at that intersection.</p>
+        <p>My philosophy: <strong>static-first, lightweight, API-driven, civic-minded.</strong> Build tools that work, ship openly, measure what matters.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card fade-in delay-1">
+          <div class="stat-value">1.1M</div>
+          <div class="stat-label">Parcels Mapped</div>
+        </div>
+        <div class="stat-card fade-in delay-2">
+          <div class="stat-value">4+</div>
+          <div class="stat-label">Active Projects</div>
+        </div>
+        <div class="stat-card fade-in delay-3">
+          <div class="stat-value">26.2</div>
+          <div class="stat-label">Marathon Miles</div>
+        </div>
+        <div class="stat-card fade-in delay-4">
+          <div class="stat-value">AI↑</div>
+          <div class="stat-label">First Approach</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="container">
+    <div class="section-label">// work</div>
+    <h2 class="section-title fade-in">Day Job</h2>
+    <p class="section-subtitle fade-in">Leading technology, services, and client experience at scale in commercial real estate software.</p>
+    <div class="work-card fade-in">
+      <div class="work-header">
+        <div>
+          <div class="work-company">Altus Group</div>
+          <div class="work-role">Executive Vice President · Services &amp; CEG</div>
+        </div>
+        <span class="work-badge">● Current</span>
+      </div>
+      <div class="work-items">
+        <div class="work-item">
+          <div class="work-item-icon" style="background:rgba(0,229,255,0.08);">🏗️</div>
+          <div class="work-item-text">
+            <strong>Product Development</strong>
+            ARGUS Enterprise, ARGUS Connect, and the ARGUS Intelligence Platform
+          </div>
+        </div>
+        <div class="work-item">
+          <div class="work-item-icon" style="background:rgba(139,92,246,0.08);">🤝</div>
+          <div class="work-item-text">
+            <strong>Enterprise Clients</strong>
+            Cushman &amp; Wakefield, Newmark, JLL, UBS, and more
+          </div>
+        </div>
+        <div class="work-item">
+          <div class="work-item-icon" style="background:rgba(16,185,129,0.08);">🤖</div>
+          <div class="work-item-text">
+            <strong>AI Adoption</strong>
+            Level 1 support AI targeting ~3,000 case deflections/month
+          </div>
+        </div>
+        <div class="work-item">
+          <div class="work-item-icon" style="background:rgba(245,158,11,0.08);">📊</div>
+          <div class="work-item-text">
+            <strong>Operations</strong>
+            Support, Training, Consulting &amp; Resource Planning
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">// projects</div>
+    <h2 class="section-title fade-in">Side Projects &amp; Ventures</h2>
+    <p class="section-subtitle fade-in">Civic tech, running, e-commerce, and community tools — built lightweight and shipped openly.</p>
+    <div class="projects-grid">
+
+      <a href="https://harristaxappeals.org" target="_blank" rel="noopener" class="project-card featured fade-in">
+        <div class="project-header">
+          <div class="project-icon" style="background:rgba(0,229,255,0.08);">🏠</div>
+          <div class="project-status" style="color:var(--green);">
+            <span class="status-dot" style="background:var(--green);"></span> Live
+          </div>
+        </div>
+        <div class="project-name">HarrisTaxAppeals</div>
+        <div class="project-desc">County-scale property tax protest tool for Harris County homeowners. Equity-based protest arguments built from HCAD public data — covering 1.1M+ residential parcels. Scaled up from a Jersey Village prototype of ~2,172 parcels.</div>
+        <div class="project-tags">
+          <span class="tag">Cloudflare Pages</span>
+          <span class="tag">DuckDB</span>
+          <span class="tag">PMTiles</span>
+          <span class="tag">MapLibre GL JS</span>
+          <span class="tag">R2 + Workers</span>
+          <span class="tag">Civic Tech</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/sbezner/run-houston2" target="_blank" rel="noopener" class="project-card fade-in delay-1">
+        <div class="project-header">
+          <div class="project-icon" style="background:rgba(16,185,129,0.08);">🏃</div>
+          <div class="project-status" style="color:var(--cyan);">
+            <span class="status-dot" style="background:var(--cyan);"></span> Active
+          </div>
+        </div>
+        <div class="project-name">run-houston2</div>
+        <div class="project-desc">Static race discovery site for Houston-area runners. Quarterly Claude-assisted research produces verified race datasets through early 2027.</div>
+        <div class="project-tags">
+          <span class="tag">Vanilla JS</span>
+          <span class="tag">GitHub Pages</span>
+          <span class="tag">Flat JSON</span>
+          <span class="tag">Claude Code</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/sbezner/JerseyVillage2026" target="_blank" rel="noopener" class="project-card fade-in delay-2">
+        <div class="project-header">
+          <div class="project-icon" style="background:rgba(139,92,246,0.08);">🗳️</div>
+          <div class="project-status" style="color:var(--purple);">
+            <span class="status-dot" style="background:var(--purple);"></span> Shipped
+          </div>
+        </div>
+        <div class="project-name">JerseyVillage2026</div>
+        <div class="project-desc">Voter guide microsite for the May 2026 Jersey Village municipal election — with daily AI-powered candidate social media summaries via GitHub Actions cron.</div>
+        <div class="project-tags">
+          <span class="tag">Anthropic API</span>
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">Cloudflare DNS</span>
+          <span class="tag">Vanilla JS</span>
+        </div>
+      </a>
+
+      <a href="https://energizedengines.com" target="_blank" rel="noopener" class="project-card fade-in delay-3">
+        <div class="project-header">
+          <div class="project-icon" style="background:rgba(245,158,11,0.08);">⚙️</div>
+          <div class="project-status" style="color:var(--orange);">
+            <span class="status-dot" style="background:var(--orange);"></span> Commerce
+          </div>
+        </div>
+        <div class="project-name">Energized Engines</div>
+        <div class="project-desc">Shopify e-commerce business selling industrial Sumner lift equipment parts. Customer base seeds product ideas for industrial IoT and adjacent hardware concepts.</div>
+        <div class="project-tags">
+          <span class="tag">Shopify</span>
+          <span class="tag">E-Commerce</span>
+          <span class="tag">Industrial IoT</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- AI STACK -->
+<section id="ai">
+  <div class="container">
+    <div class="section-label">// ai_stack</div>
+    <h2 class="section-title fade-in">Personal AI Stack</h2>
+    <p class="section-subtitle fade-in">A persistent, locally-hosted AI layer running 24/7 — centered on Fred, my AI Chief of Staff on a Mac Mini M4.</p>
+    <div class="ai-grid">
+      <div class="ai-card fade-in">
+        <div class="ai-card-header">
+          <div class="ai-icon" style="background:rgba(0,229,255,0.08);">🤖</div>
+          <div>
+            <div class="ai-name">Fred</div>
+            <div class="ai-type">Chief of Staff</div>
+          </div>
+        </div>
+        <div class="ai-desc">Local AI chief of staff running on Mac Mini M4 via OpenClaw. Accessible via Telegram bot, backed by Gemini 2.5 Flash, with IMAP/SMTP email integration at fred.onduty@gmail.com.</div>
+      </div>
+      <div class="ai-card fade-in delay-1">
+        <div class="ai-card-header">
+          <div class="ai-icon" style="background:rgba(139,92,246,0.08);">💻</div>
+          <div>
+            <div class="ai-name">Claude Code</div>
+            <div class="ai-type">Implementation Engine</div>
+          </div>
+        </div>
+        <div class="ai-desc">Claude Max subscription used daily for all implementation work. The /claude Telegram slash command within Fred's workspace shells out directly to the Claude CLI.</div>
+      </div>
+      <div class="ai-card fade-in delay-2">
+        <div class="ai-card-header">
+          <div class="ai-icon" style="background:rgba(16,185,129,0.08);">⚡</div>
+          <div>
+            <div class="ai-name">OpenClaw + MCP</div>
+            <div class="ai-type">Agent Framework</div>
+          </div>
+        </div>
+        <div class="ai-desc">OpenClaw agent framework with Model Context Protocol (MCP) integration. Ollama for local LLM inference on idle hardware. Exploring distributed compute across idle machines.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RUNNING -->
+<section id="running">
+  <div class="container">
+    <div class="section-label">// running</div>
+    <h2 class="section-title fade-in">On the Road</h2>
+    <div class="running-card fade-in">
+      <div class="running-text">
+        <h3>Dedicated endurance runner</h3>
+        <p>Logging substantial weekly mileage tracked via Apple Health. Running ties directly into civic work — run-houston2 is a race discovery tool built for the Houston running community. Footwear of choice: Brooks and Xero for high-performance minimalist training.</p>
+      </div>
+      <div class="running-races">
+        <div class="race-item">
+          <span class="race-icon">🏁</span>
+          <div>
+            <div class="race-name">Cowtown Marathon</div>
+            <div class="race-dist">26.2 mi</div>
+          </div>
+        </div>
+        <div class="race-item">
+          <span class="race-icon">🏃</span>
+          <div>
+            <div class="race-name">Run Houston Series</div>
+            <div class="race-dist">Half Marathon</div>
+          </div>
+        </div>
+        <div class="race-item">
+          <span class="race-icon">📍</span>
+          <div>
+            <div class="race-name">Houston Area Races</div>
+            <div class="race-dist">run-houston2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="tech-section">
+  <div class="container">
+    <div class="section-label">// tech_stack</div>
+    <h2 class="section-title fade-in">Stack &amp; Tools</h2>
+    <div class="tech-categories fade-in">
+      <div class="tech-category">
+        <h4>Cloud &amp; Hosting</h4>
+        <div class="tech-tags">
+          <div class="tech-tag"><span class="tech-dot" style="background:#f6821f;"></span>Cloudflare Pages</div>
+          <div class="tech-tag"><span class="tech-dot" style="background:#f6821f;"></span>Cloudflare Workers</div>
+          <div class="tech-tag"><span class="tech-dot" style="background:#f6821f;"></span>Cloudflare R2</div>
+          <div class="tech-tag"><span class="tech-dot" style="background:#24292f;"></span>GitHub Pages</div>
+          <div class="tech-tag"><span class="tech-dot" style="background:#2088ff;"></span>GitHub Actions</div>
+        </div>
+      </div>
+      <div class="tech-category">
+        <h4>Data &amp; Maps</h4>
+        <div class="tech-tags">
+          <div class="tech-tag"><span class="tech-dot" style="background:var(--cyan);"></span>DuckDB</div>
+          <div class="tech-tag"><span class="tech-dot" style="background:var(--cyan);"></span>PMTiles</div>
+          <div class="tech-tag"><span class="tech-dot" style="background:var(--cyan);"></span>MapLibre GL JS</div>
+          <div class="tech-tag"><span class="tech-dot" style="background:var(--cyan);"></span>Flat JSON</div>
+        </div>
+      </div>
+      <div class="tech-category">
+        <h4>AI &amp; Inference</h4>
+        <div class="tech-tags">
+          <div class="tech-tag"><span class="tech-dot" style="background:var(--purple);"></span>Claude (Anthropic)</div>
+          <div class="tech-tag"><span class="tech-dot" style="background:var(--purple);"></span>Gemini 2.5 Flash</div>
+          <div class="tech-tag"><span class="tech-dot" style="background:var(--purple);"></span>Ollama</div>
+          <div class="tech-tag"><span class="tech-dot" style="background:var(--purple);"></span>OpenClaw</div>
+          <div class="tech-tag"><span class="tech-dot" style="background:var(--purple);"></span>MCP</div>
+        </div>
+      </div>
+      <div class="tech-category">
+        <h4>Frontend &amp; Commerce</h4>
+        <div class="tech-tags">
+          <div class="tech-tag"><span class="tech-dot" style="background:var(--green);"></span>Vanilla HTML/CSS/JS</div>
+          <div class="tech-tag"><span class="tech-dot" style="background:var(--green);"></span>Shopify</div>
+          <div class="tech-tag"><span class="tech-dot" style="background:var(--green);"></span>Mac Mini M4</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="#" class="footer-logo">bez.</a>
+    <div class="footer-links">
+      <a href="https://github.com/sbezner" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://harristaxappeals.org" target="_blank" rel="noopener">HarrisTaxAppeals</a>
+      <a href="https://energizedengines.com" target="_blank" rel="noopener">Energized Engines</a>
+    </div>
+    <div class="footer-copy">Steve Bezner · Jersey Village, TX</div>
+  </div>
+</footer>
+
+<script>
+  // Typewriter
+  const roles = [
+    'EVP @ Altus Group',
+    'Civic Tech Builder',
+    'AI Enthusiast',
+    'Endurance Runner',
+    'Static-First Developer',
+  ];
+  let ri = 0, ci = 0, del = false;
+  const el = document.getElementById('typed-text');
+
+  function type() {
+    const r = roles[ri];
+    if (!del) {
+      el.textContent = r.slice(0, ++ci);
+      if (ci === r.length) { del = true; setTimeout(type, 2000); return; }
+    } else {
+      el.textContent = r.slice(0, --ci);
+      if (ci === 0) { del = false; ri = (ri + 1) % roles.length; }
+    }
+    setTimeout(type, del ? 45 : 75);
+  }
+  type();
+
+  // Scroll fade-in
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+
 </body>
 </html>
