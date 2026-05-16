@@ -44,6 +44,11 @@
 * **Claude Code** — Claude Max subscription, used daily for all implementation work.
 * **Models in use:** Gemini 2.5 Flash (Fred primary), Gemini 2.5 Flash-Lite (cost-saving), Claude Opus/Sonnet (Claude Code).
 
+## Git / Version Control Rules
+* **Only `sbezner/stevebezner.ai` should be committed to git** — do not init repos in other local directories
+* Do not commit `.DS_Store` files
+* All changes go directly to `main` branch
+
 ## Key Relationships
 * **Family:** Married to Amy Wells Bezner. Daughter Shelby (works at Gartner).
 * **Professional:** Associates include Gaetan, Karli Moore, Vlad, Pratap, and Todd.

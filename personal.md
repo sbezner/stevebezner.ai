@@ -187,3 +187,12 @@ Shopify, Telegram Bot API, Gmail IMAP/SMTP, Firebase Auth, RunSignUp API, Reddit
 ## Location
 
 Jersey Village, TX — northwest Houston.
+
+---
+
+## Git / Version Control Rules
+
+- **Only the `sbezner/stevebezner.ai` repo should be committed to git**
+- Do NOT initialize git repos in other local directories (e.g. `~/Projects/scripts`)
+- Do NOT commit `.DS_Store` files
+- All changes go to `main` branch directly

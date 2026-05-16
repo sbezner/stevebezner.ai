@@ -33,3 +33,10 @@ Personal website for Steve Bezner ("Bez") — EVP at Altus Group, civic tech bui
 ## Deploy
 
 Push to `main` → GitHub Pages auto-deploys → live at https://sbezner.com
+
+## Git Rules
+
+- **Only this repo (`sbezner/stevebezner.ai`) should be committed to git**
+- Do NOT initialize git repos in other local directories (e.g. `~/Projects/scripts`)
+- Do NOT commit `.DS_Store` files
+- All changes go to `main` branch — no feature branches needed for this site
