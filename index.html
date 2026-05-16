@@ -1241,13 +1241,14 @@
             </div>
           </div>
           <div class="project-name">HarrisTaxAppeals</div>
-          <div class="project-desc">County-scale property tax protest tool for all Harris County homeowners. Equity-based arguments from HCAD public data — 1.1M+ residential parcels. Scaled from a Jersey Village prototype of ~2,172 parcels.</div>
+          <div class="project-desc">County-scale property tax protest tool covering 1.1M+ Harris County residential parcels — scaled from a 2,172-parcel Jersey Village prototype. Uses §41.43(b)(3) comparable-home methodology: same HCAD neighborhood code, ±15% sq ft, ±10 years age, geographically closest comps. Enterprise-grade Cloudflare infrastructure: R2 + Workers + PMTiles + gzip compression + rate limiting.</div>
           <div class="project-tags">
             <span class="tag">Cloudflare Pages</span>
             <span class="tag">DuckDB</span>
             <span class="tag">PMTiles</span>
             <span class="tag">MapLibre GL JS</span>
             <span class="tag">R2 + Workers</span>
+            <span class="tag">Python Pipeline</span>
             <span class="tag">Sharded JSON</span>
           </div>
         </a>
@@ -1276,10 +1277,11 @@
             </div>
           </div>
           <div class="project-name">JerseyVillage2026</div>
-          <div class="project-desc">Voter guide for the May 2026 Jersey Village municipal election. Daily AI-powered candidate social media summaries via GitHub Actions cron and the Anthropic API.</div>
+          <div class="project-desc">Voter guide for the May 2026 Jersey Village municipal election. A fully automated pipeline: GitHub Actions cron jobs fetch candidate social media daily, pass it to Claude via the Anthropic API with web search tools, and publish AI-generated summaries directly to the live site — no manual updates required.</div>
           <div class="project-tags">
             <span class="tag">Anthropic API</span>
             <span class="tag">GitHub Actions</span>
+            <span class="tag">Claude Web Search</span>
             <span class="tag">Cloudflare DNS</span>
             <span class="tag">Vanilla JS</span>
           </div>
@@ -1301,12 +1303,32 @@
             </div>
           </div>
           <div class="project-name">run-houston2</div>
-          <div class="project-desc">Static race discovery site for Houston-area runners. Quarterly Claude-assisted research produces verified race datasets covering April 2026 through early 2027.</div>
+          <div class="project-desc">Race discovery site for Houston-area runners. Quarterly research pipeline: Claude pulls live race data from the RunSignUp API, validates and normalizes it, then commits verified datasets covering April 2026 through early 2027.</div>
           <div class="project-tags">
+            <span class="tag">RunSignUp API</span>
+            <span class="tag">Claude Code</span>
             <span class="tag">Vanilla JS</span>
             <span class="tag">Flat JSON</span>
             <span class="tag">GitHub Pages</span>
-            <span class="tag">Claude Code</span>
+          </div>
+        </a>
+
+        <a href="https://github.com/sbezner/run-houston" target="_blank" rel="noopener" class="project-card">
+          <div class="project-header">
+            <div class="project-icon" style="background:rgba(16,185,129,0.08);">⚡</div>
+            <div class="project-status" style="color:var(--cyan);">
+              <span class="status-dot" style="background:var(--cyan);"></span> Full-Stack
+            </div>
+          </div>
+          <div class="project-name">run-houston</div>
+          <div class="project-desc">Full-stack race platform with a React + Vite frontend, FastAPI backend, PostgreSQL + PostGIS database, Docker infrastructure, and a full Jest test suite. Includes separate marketing and admin dashboards.</div>
+          <div class="project-tags">
+            <span class="tag">React 18</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">PostGIS</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Jest</span>
           </div>
         </a>
 
