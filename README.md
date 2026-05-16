@@ -7,7 +7,7 @@ Personal website for Steve Bezner ("Bez") — EVP at Altus Group, civic tech bui
 ## Stack
 
 - Single-file static site (`index.html`) — no build step, no framework
-- Hosted on GitHub Pages with custom domain via Cloudflare
+- Hosted on GitHub Pages with custom domain (`sbezner.com`) via Cloudflare
 - Dark/light mode toggle with localStorage persistence
 - Scroll-triggered fade-in animations via IntersectionObserver
 - Typewriter hero with cycling roles
@@ -24,10 +24,9 @@ Personal website for Steve Bezner ("Bez") — EVP at Altus Group, civic tech bui
 - Running (Cowtown Marathon, Chevron Houston Marathon, run-houston2)
 - Tech Stack (60+ tags across 7 categories)
 
-## Profile Files
+## Files
 
-- `personal.md` — detailed profile for AI context (source of truth)
-- `gemini.md` — condensed profile summary
+- `PROFILE.md` — complete profile (source of truth for AI context)
 - `LinkedInProfile.pdf` — LinkedIn export (May 2026)
 
 ## Deploy
@@ -36,7 +35,7 @@ Push to `main` → GitHub Pages auto-deploys → live at https://sbezner.com
 
 ## Git Rules
 
-- **Only this repo (`sbezner/stevebezner.ai`) should be committed to git**
+- **Only this repo (`sbezner/stevebezner.ai`) is committed to git**
 - Do NOT initialize git repos in other local directories (e.g. `~/Projects/scripts`)
 - Do NOT commit `.DS_Store` files
-- All changes go to `main` branch — no feature branches needed for this site
+- All changes go directly to `main` branch
